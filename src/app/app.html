@@ -1,0 +1,142 @@
+<div id="cuerpo">
+        
+        <div id="encabezado">
+            <h1 id="titutlo">De Jovenes Leganes</h1>
+            <h2 id="subtitulo">Unete Al Club</h2>
+        </div>
+        
+        <form [formGroup]="formularioJovenes" (ngSubmit)="submit()" class="formulario">
+            <div>
+                <label>Nombre: </label>
+                <input class = "caja" id="nombre" type="text" formControlName="nombre" name="nombre" required>
+                <br>
+                @if (formularioJovenes.get('nombre')?.errors?.['minlength']) {
+                    <p class="obligatorio">el nombre no puede ser menor a 2</p>
+                }
+
+                @if (formularioJovenes.get('nombre')?.errors?.['maxlength']) {
+                    <p class="obligatorio"> el nombre debe ser menor a 60</p>
+                }
+
+            </div>
+            <br>
+            <div>
+                <label>Apellido: </label>
+                 <input class="caja" id="apellido" type="text" formControlName="apellido" name="apellido" required>
+                 <br>
+                 @if (formularioJovenes.get('apellido')?.errors?.['minlength']) {
+                    <p class="obligatorio">Apellido no debe ser menor a 2 caracteres</p>
+                 }
+                 
+                 @if (formularioJovenes.get('apellido')?.errors?.['maxlength']) {
+                    <p class="obligatorio">Apellido no debe ser mayor a 60 caracteres</p>
+                 }
+            </div>
+            <br>
+            <div>
+                <label>DNI: </label>
+                <input class="caja" id="dni" type="text" formControlName = "dni" name="dni">
+                <br>
+                @if (formularioJovenes.get('dni')?.errors?.['validarDNI']) {
+                    <p class="obligatorio">Dni deber de 8 letras y 1 numero(NNNNNNNNL)</p>
+                }
+                
+            </div>
+            <br>
+            <div>
+                <label>Fecha: </label>
+                <input class="caja" id="fecha" type="text" formControlName="fecha" name="fecha">
+                <br>
+                @if (formularioJovenes.get('fecha')?.errors?.['validarFecha']) {
+                    <p class="obligatorio" id="errorFecha"> La fecha deber ser dd/mm/aaaa</p>
+                }
+                
+            </div>
+            <br>
+            <div class="noCaja" id="sexo">
+                <label id="sexo1">Sexo: </label>
+                <label>H</label>
+                <input class="linea" id="h" type="radio" name="sexo" formControlName="sexo" value="H">
+                <label>M</label>
+                <input class="linea" id="m" type="radio" name="sexo" formControlName="sexo" value="M">
+                <br>
+                @if (formularioJovenes.get('sexo')?.errors?.['required']) {
+                    <p class="obligatorio">Debes seleccionar una opción</p>
+                }
+
+                
+            </div>
+            <br>
+            <div>
+                <label>Subir DNI:</label>
+                <input class="caja" id="archivo" type="file" nombre="file"  formControlName="file">
+                <br>
+                @if (formularioJovenes.get('file')?.errors?.['validarArchivo']) {
+                    <p class="obligatorio" id="errorArchivo">formato de archivo es erroneo debe ser</p>
+                }
+                
+            </div>
+            <br>
+            <div>
+                <label>Interes:</label>
+               
+                <select name="interes" class="cajaList" multiple id="interes" nombre="interes" formControlName = "interes">
+                    <option>literatura</option>
+                    <option>musica</option>
+                    <option>cocina</option>
+                    <option>deporte</option>
+                </select>
+                <br>
+                @if (formularioJovenes.get('interes')?.errors?.['validarInteres']) {
+                    <p class="obligatorio"  id="errorInteres">Debes seleccionar minimo dos interes</p>
+                }
+
+                
+            </div>
+            <br>
+            <div>
+                <label>CP:</label>
+                <div id="cp">
+                    <input class="caja" id="Cod" name="cod" type="text" formControlName="cp" (input)="onCpInput()">
+                    <input class="caja" id="provincia" name="provincia" type="text" formControlName="provinciaNombre" readonly >
+                    <br>
+                    @if (formularioJovenes.get('cp')?.errors?.['validarProvincia']) {
+                        <p class="obligatorio" id="errorCodigo">Codigo provincial es erroneo</p>
+                    }
+                    
+                </div>
+
+        
+                
+
+            </div>
+            <br>
+           <div>
+				<label class="linea">Laboral: </label>
+				<select class="cajaList1" id="situacion" name="situacion">
+  					<option value="29">Desempleado</option>
+  					<option value="05">Trabajador</option>
+                    <option value="0" selected="selected">Estudiante</option>
+				</select>
+			</div>
+            <br>
+            <div>
+                <label class="linea">Acepto condiciones</label>
+				<input id="preferente" type="checkbox" name="preferente" formControlName="acepto">
+            </div>
+
+
+            <div>
+                   <button id="submit" type="submit" value="submit">Enviar</button>
+            </div>
+             <div>
+                  <button type="reset" id = "borrar">Borrar</button>
+            </div>
+
+            </form>
+            
+        <br>
+   
+    </div>
+
+<router-outlet />
