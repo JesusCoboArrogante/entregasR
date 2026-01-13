@@ -1,0 +1,59 @@
+/* You can add global styles to this file, and also import other style files */
+
+
+
+body{
+   text-align: center;
+   background-color: rgb(217, 133, 24);
+   color: rgb(58, 38, 18);
+   font-weight: bold;
+   size: 100px;
+
+     
+   
+}
+
+input{
+  background-color: orange;
+  font-weight: bold;
+  color: rgb(58, 38, 18);
+   border-radius: 10px;
+
+}
+
+select{
+  background-color: orange;
+  color: rgb(58, 38, 18);
+  font-weight: bold;
+   border-radius: 10px;
+}
+
+
+#tabla {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-top: 30px;
+}
+
+
+#tabla table {
+  border-collapse: collapse;
+  width: 600px;
+  background-color: transparent; 
+}
+
+
+#tabla th,
+#tabla td {
+  border: 2px solid black;
+  padding: 10px;
+  text-align: center;
+  background-color: transparent; 
+  color: inherit;                
+}
+
+#tabla th {
+  font-weight: bold;
+}
+

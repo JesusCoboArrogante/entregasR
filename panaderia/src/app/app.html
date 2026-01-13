@@ -1,0 +1,100 @@
+<div id="titulo">
+  <img src="assets/img/img1.png" alt="">
+</div>
+
+<div id="datos">
+  <p id="direccion">C/Del trigo Nº24 28916 Madrid</p>
+  <p id="contacto">91 694 55 66</p>
+</div>
+
+<div id="borde">
+  <br>
+
+  <!-- FORM Angular -->
+  <form id="preTabla" [formGroup]="form" (ngSubmit)="$event.preventDefault()">
+
+    <label>Producto: </label>
+    <select id="seleccion" formControlName="producto" (change)="precioPan()">
+      <option value="">-- Selecciona el pan --</option>
+      <option *ngFor="let p of pan" [value]="p">
+        {{ p }}
+      </option>
+    </select>
+
+    <label>Cantidad: </label>
+    <input
+      type="number"
+      id="cantidad"
+      min="1"
+      max="20"
+      formControlName="cantidad"
+      (input)="precioPan()"
+    >
+
+    <label>Precio</label>
+    <input
+      id="precio"
+      type="text"
+      formControlName="precio"
+      readonly
+    >
+
+    <input type="button" value="Añadir" (click)="agregarProducto()">
+
+  </form>
+
+  <br>
+
+  <div id="tabla">
+    <table>
+      <thead>
+        <tr>
+          <th>Producto</th>
+          <th>Precio</th>
+          <th>Cantidad</th>
+          <th>Total</th>
+          <th>
+            <input type="button" value="Borrar" (click)="borrarSeleccionados()">
+          </th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let it of items">
+          <td>{{ it.producto }}</td>
+          <td>{{ it.precioUnit.toFixed(2) }}</td>
+          <td>{{ it.cantidad }}</td>
+          <td>{{ it.total.toFixed(2) }}</td>
+          <td>
+            <input
+              type="checkbox"
+              [checked]="it.checked"
+              (change)="it.checked = $any($event.target).checked"
+            >
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <br>
+
+  <div id="pie">
+    <label>Total</label>
+    <input
+      type="text"
+      id="superTotal"
+      [value]="superTotal.toFixed(2)"
+      readonly
+    >
+    <input type="button" value="Ticket" (click)="generarTicket()">
+  </div>
+
+  <br>
+</div>
+
+
+
+
+
+
